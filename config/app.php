@@ -2,6 +2,7 @@
 
 return [
 
+    'name' => env('APP_NAME', 'lara-blog'),
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
@@ -26,7 +27,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => env('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('TIMEZONE') ? :'Asia/Shanghai',
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +53,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('LOCALE') ? :'zh_cn',
 
     /*
     |--------------------------------------------------------------------------
@@ -145,11 +146,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        /*
-         * My Providers
-         */
-        Barryvdh\Debugbar\ServiceProvider::class,
-
     ],
 
     /*
@@ -197,10 +193,6 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        /*
-         * My Aliases
-         */
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
