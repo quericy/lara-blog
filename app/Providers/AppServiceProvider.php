@@ -28,8 +28,10 @@ class AppServiceProvider extends ServiceProvider
             //IdeaHelper
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
             //DebugBar
-            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
-            $this->app->alias('Debugbar', \Barryvdh\Debugbar\Facade::class);
+            if (config('app.debug') === true) {
+                $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+                $this->app->alias('Debugbar', \Barryvdh\Debugbar\Facade::class);
+            }
         }
     }
 }
