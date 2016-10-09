@@ -145,9 +145,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        //DebugBar
-        Barryvdh\Debugbar\ServiceProvider::class,
-
+        //Service Provider
+        Sven\EnvProviders\EnvServiceProvider::class,
     ],
 
     /*
@@ -195,7 +194,7 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        //DebugBar
+        //Laravel-DebugBar
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],

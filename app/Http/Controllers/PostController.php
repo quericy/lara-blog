@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Posts;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -19,7 +19,7 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = Posts::where('updated_at', '<=', Carbon::now())
+        $posts = Post::where('updated_at', '<=', Carbon::now())
             ->orderBy('id', 'desc')
             ->paginate(5);
         return view('post.show', compact('posts'));
