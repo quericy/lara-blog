@@ -15,4 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/blog','PostController@index');
+Route::get('/blog', 'PostController@index');
+Route::get('/category/{id}', 'CategoryController@show')->name('category.show')->where('id', '[0-9]+');
+Route::get('/tag/{id}', 'TagController@show')->name('tag.show')->where('id', '[0-9]+');

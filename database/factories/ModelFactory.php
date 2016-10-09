@@ -38,3 +38,9 @@ $factory->define(App\Models\Tag::class, function (Faker\Generator $faker) {
         'tag_name' => $faker->words(1, true),
     ];
 });
+//create categories seed
+$factory->define(App\Models\Category::class, function (Faker\Generator $faker) {
+    return [
+        'category_name' => $faker->words(1, true),
+    ];
+});

@@ -12,11 +12,27 @@
         @foreach ($posts as $post)
             <li>
                 <a href="/blog/{{ $post->slug }}">{{ $post->title }}</a>
-                <em>({{ $post->updated_at }})</em>
+                <p>
+                    &nbsp;分类:
+                    <a class="category" href="{{ route('category.show',$post->category->id) }}">
+                        {{$post->category->category_name}}
+                    </a>
+                    @if ($post->tags->count() )
+                        &nbsp;标签:
+                        @foreach ($post->tags as $each_tag)
+                            <a class="tag" href="{{ route('tag.show',$each_tag->id) }}">{{$each_tag->tag_name}}</a>
+                            @if ($post->tags->last() !== $each_tag)
+                                ,
+                            @endif
+                        @endforeach
+                    @endif
+                    &nbsp;最后更新:{{ $post->updated_at }}
+                </p>
                 <p>
                     {{ str_limit($post->content) }}
                 </p>
             </li>
+            <hr>
         @endforeach
     </ul>
     <hr>
