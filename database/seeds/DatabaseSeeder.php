@@ -10,15 +10,21 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+    protected $seeders = [
+        PostTableSeeder::class,
+        CategoryTableSeeder::class,
+        TagTableSeeder::class,
+        PostTagTableSeeder::class,
+    ];
+
     public function run()
     {
         Model::unguard();
 
         // $this->call(UserTableSeeder::class);
-        factory(App\Models\Post::class, 10)->create();
-        factory(App\Models\Tag::class, 5)->create();
-        factory(App\Models\Category::class, 3)->create();
-
+        foreach ($this->seeders as $each_seeder) {
+            $this->call($each_seeder);
+        }
         Model::reguard();
     }
 }
