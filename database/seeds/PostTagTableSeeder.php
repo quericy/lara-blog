@@ -11,15 +11,21 @@ class PostTagTableSeeder extends Seeder
      */
     public function run()
     {
-
-        $posts_id_arr = DB::table('posts')->skip(0)->limit(5)->lists('id');
+        $posts_id_arr = DB::table('posts')->skip(0)->limit(9)->lists('id');
         $tags_id_arr = DB::table('tags')->skip(0)->limit(5)->lists('id');
-
+        if (empty($posts_id_arr) || empty($tags_id_arr)) {
+            return;
+        }
         foreach ($posts_id_arr as $each_post) {
+            $has_tag = 0;
             foreach ($tags_id_arr as $each_tag) {
                 if ($each_tag > $each_post) {
                     $this->insert_record($each_post, $each_tag);
+                    $has_tag++;
                 }
+            }
+            if (!$has_tag) {
+                $this->insert_record($each_post, $tags_id_arr[0]);
             }
         }
     }
