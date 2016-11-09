@@ -5,38 +5,25 @@
 </head>
 <body>
 <div class="container">
-    <h1>文章列表</h1>
-    <h5>Page {{ $posts->currentPage() }} of {{ $posts->lastPage() }}</h5>
-    <hr>
-    <ul>
-        @foreach ($posts as $post)
-            <li>
-                <a href="/blog/{{ $post->slug }}">{{ $post->title }}</a>
-                <p>
-                    &nbsp;分类:
-                    <a class="category" href="{{ route('category.show',$post->category->id) }}">
-                        {{$post->category->category_name}}
-                    </a>
-                    @if ($post->tags->count() )
-                        &nbsp;标签:
-                        @foreach ($post->tags as $each_tag)
-                            <a class="tag" href="{{ route('tag.show',$each_tag->id) }}">{{$each_tag->tag_name}}</a>
-                            @if ($post->tags->last() !== $each_tag)
-                                ,
-                            @endif
-                        @endforeach
-                    @endif
-                    &nbsp;最后更新:{{ $post->updated_at }}
-                </p>
-                <p>
-                    {{ str_limit($post->content) }}
-                </p>
-            </li>
-            <hr>
+    <h1>{{$show_post->title}}</h1>
+    <br>
+    &nbsp;分类:
+    <a class="category" href="{{ route('category.show',$show_post->category->id) }}">
+        {{$show_post->category->category_name}}
+    </a>
+    @if ($show_post->tags->count() )
+        &nbsp;标签:
+        @foreach ($show_post->tags as $each_tag)
+            <a class="tag" href="{{ route('tag.show',$each_tag->id) }}">{{$each_tag->tag_name}}</a>
+            @if ($show_post->tags->last() !== $each_tag)
+                ,
+            @endif
         @endforeach
-    </ul>
+    @endif
+    &nbsp;最后更新:{{ $show_post->updated_at }}
     <hr>
-    {!! $posts->render() !!}
+    {{$show_post->content}}
+
 </div>
 </body>
 </html>

@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -32,7 +31,7 @@ class PostController extends Controller
                 $query->where('status', 0);
             },
         ]);
-        return view('post.show', compact('posts'));
+        return view('post.index', compact('posts'));
     }
 
     /**
@@ -64,7 +63,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $show_post = Post::where(['id' => $id])->firstOrFail();
+        return view('post.show', compact('show_post'));
     }
 
     /**
