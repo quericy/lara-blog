@@ -9,7 +9,7 @@
     <h5>Page {{ $posts->currentPage() }} of {{ $posts->lastPage() }}</h5>
     <hr>
     <ul>
-        @foreach ($posts as $post)
+        @forelse($posts as $post)
             <li>
                 <a href="/blog/{{ $post->id }}">{{ $post->title }}</a>
                 <p>
@@ -33,7 +33,9 @@
                 </p>
             </li>
             <hr>
-        @endforeach
+        @empty
+            <li>暂无文章</li>
+        @endforelse
     </ul>
     <hr>
     {!! $posts->render() !!}
