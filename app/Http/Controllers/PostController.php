@@ -8,8 +8,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Post;
 
+use App\Repositories\PostRepository;
+
 class PostController extends Controller
 {
+    protected $postRepository;
+
+    public function __construct(PostRepository $postRepository)
+    {
+        $this->postRepository = $postRepository;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
