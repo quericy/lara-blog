@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Post extends Model
+class Post extends IModel
 {
+    //use ORM Cache
+    protected $needCache = true;
+
     use SoftDeletes;
     //
     protected $dates = ['deleted_at', 'updated_at', 'created_at'];

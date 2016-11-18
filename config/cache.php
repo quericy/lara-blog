@@ -17,6 +17,8 @@ return [
 
     'enable' => env('CACHE_ENABLE', false),
 
+    'ORM' => env('CACHE_ORM_ENABLE', false),
+
     /*
     |--------------------------------------------------------------------------
     | Cache Stores

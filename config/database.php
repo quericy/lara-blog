@@ -121,17 +121,23 @@ return [
             'port'     => env('REDIS_PORT', 6379),
             'database' => 0,
         ],
+        'pea' => [
+            'host'     => env('REDIS_HOST', 'localhost'),
+            'password' => env('REDIS_PASSWORD', null),
+            'port'     => env('REDIS_PORT', 6379),
+            'database' => 1,
+        ],
         'session-redis' => [
             'host'     => env('REDIS_HOST', 'localhost'),
             'password' => env('REDIS_PASSWORD', null),
             'port'     => env('REDIS_PORT', 6379),
-            'database' => 0,
+            'database' => 2,
         ],
         'queue-redis' => [
             'host'     => env('REDIS_HOST', 'localhost'),
             'password' => env('REDIS_PASSWORD', null),
             'port'     => env('REDIS_PORT', 6379),
-            'database' => 0,
+            'database' => 3,
         ],
 
     ],

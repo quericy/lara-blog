@@ -16,6 +16,8 @@ return [
         'environments' => ['local', 'development', 'dev'],
 
         'providers' => [
+
+            Angejia\Pea\ServiceProvider::class,
             //DebugBar
             Barryvdh\Debugbar\ServiceProvider::class,
             //IdeaHelper
@@ -39,7 +41,9 @@ return [
      */
     [
         'environments' => ['production'],
-        'providers' => [],
+        'providers' => [
+            Angejia\Pea\ServiceProvider::class,
+        ],
         'aliases' => [],
     ],
 

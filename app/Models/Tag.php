@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Tag extends IModel
 {
+    //use ORM Cache
+    protected $needCache = true;
     //
     protected $fillable = ['tag_name'];
 
