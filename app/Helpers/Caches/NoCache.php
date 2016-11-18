@@ -12,14 +12,10 @@ use App\Contracts\SiteCacheInterface;
 class NoCache implements SiteCacheInterface
 {
 
-    public function getKey()
+    public function remember()
     {
         // TODO: Implement getKey() method.
         echo 'no cache';
     }
-
-    public function setKey()
-    {
-        // TODO: Implement setKey() method.
-    }
+    
 }

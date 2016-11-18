@@ -11,16 +11,12 @@ use App\Contracts\SiteCacheInterface;
 
 class RedisCache implements SiteCacheInterface
 {
-    public function getKey()
+    public function remember()
     {
         // TODO: Implement getKey() method.
         echo 'redis cache';
     }
 
-    public function setKey()
-    {
-        // TODO: Implement setKey() method.
-    }
 
 
 }

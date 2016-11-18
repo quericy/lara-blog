@@ -41,6 +41,7 @@ class PostController extends Controller
                 $query->where('status', 0);
             },
         ]);
+        $this->postRepository->test();
         return view('post.index', compact('posts'));
     }
 

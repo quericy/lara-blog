@@ -13,21 +13,22 @@ abstract class Repository
 {
     private $siteCache;
 
+    public abstract function model();
+
+    public abstract function tag();
+
     /**
+     * 按需获取缓存接口实现的实例
      * @return \App\Contracts\SiteCacheInterface
      */
-    private function getCacheObj()
+    public function CacheObj()
     {
-        $cache_interface_name = SiteCacheInterface::class;
         if (null === $this->siteCache) {
-            $this->siteCache = app($cache_interface_name);
+            $this->siteCache = app(SiteCacheInterface::class);
         }
         return $this->siteCache;
     }
 
-    public function getTest()
-    {
-        $this->getCacheObj()->getKey();
-    }
+
 
 }

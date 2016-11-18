@@ -10,9 +10,7 @@ namespace App\Contracts;
 
 interface SiteCacheInterface
 {
-    public function getKey();
 
-    public function setKey();
-
+    public function remember();
 
 }

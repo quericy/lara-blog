@@ -22,15 +22,13 @@ class CacheServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the application services.
-     *
+     * 根据配置文件注册应用程序的缓存服务
      * @return void
      */
     public function register()
     {
         //
-        $cache_interface_name = SiteCacheInterface::class;
-        $this->app->bind($cache_interface_name, function () {
+        $this->app->bind(SiteCacheInterface::class, function () {
             if (config('cache.enable') == 'true') {
                 return new RedisCache();
             } else {
@@ -39,9 +37,12 @@ class CacheServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * 在必要的时候获取服务提供者
+     * @return array
+     */
     public function provides()
     {
-        $cache_interface_name = SiteCacheInterface::class;
-        return [$cache_interface_name];
+        return [SiteCacheInterface::class];
     }
 }
