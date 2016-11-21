@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -27,21 +26,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //查询文章并分页
-        $posts = Post::where('updated_at', '<=', Carbon::now())
-            ->where('status', 0)
-            ->orderBy('id', 'desc')
-            ->paginate(5);
-        //懒惰渴求式加载
-        $posts->load([
-            'category' => function ($query) {
-                $query->where('status', 0);
-            },
-            'tags' => function ($query) {
-                $query->where('status', 0);
-            },
-        ]);
-        $this->postRepository->test();
+        $posts = $this->postRepository->paginate();
         return view('post.index', compact('posts'));
     }
 
@@ -74,7 +59,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $show_post = Post::where(['id' => $id])->firstOrFail();
+        // $show_post = Post::where(['id' => $id])->firstOrFail();
+        $show_post = $this->postRepository->findOneByField('id', $id);
         return view('post.show', compact('show_post'));
     }
 
