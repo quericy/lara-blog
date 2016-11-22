@@ -15,7 +15,7 @@ return [
 
     'default' => env('CACHE_DRIVER', 'file'),
 
-    'enable' => env('CACHE_ENABLE', false),
+    'site' => env('CACHE_SITE_ENABLE', false),
 
     'ORM' => env('CACHE_ORM_ENABLE', false),
 

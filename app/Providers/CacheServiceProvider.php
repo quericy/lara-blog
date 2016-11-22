@@ -29,7 +29,7 @@ class CacheServiceProvider extends ServiceProvider
     {
         //
         $this->app->bind(SiteCacheInterface::class, function () {
-            if (config('cache.enable') == 'true') {
+            if (config('cache.site') == 'true') {
                 return new RedisCache();
             } else {
                 return new NoCache();

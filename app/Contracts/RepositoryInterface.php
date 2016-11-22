@@ -5,7 +5,7 @@
  * Time: 16:06
  */
 
-namespace app\Contracts;
+namespace App\Contracts;
 
 
 interface RepositoryInterface

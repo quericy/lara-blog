@@ -3,7 +3,7 @@
  * Models基类,继承自Pea
  */
 
-namespace app\Models;
+namespace App\Models;
 
 use Angejia\Pea\Model;
 
