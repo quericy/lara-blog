@@ -1,8 +1,6 @@
 <?php
 /**
- * Post Repository
- * Date: 2016/11/14 0014
- * Time: 15:17
+ * 文章数据仓库
  */
 
 namespace App\Repositories;
@@ -32,15 +30,26 @@ class PostRepository extends IRepository
      * @param array $columns
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function paginate($limit = 5, $columns = ['*'])
+    public function simplePaginate($limit = 5, $columns = ['*'])
     {
+        //$this->applyCriteria();
         //查询文章并分页
         //$posts = Post::where('updated_at', '<=', Carbon::now())
-        $posts = $this->model->where('status', 0)
-            ->orderBy('id', 'desc')
-            ->paginate($limit, $columns);
+        $posts = $this->orderBy('id', 'desc')->paginate($limit, $columns);
+        $posts = $this->getPostOtherInfo($posts);
+        return $posts;
+
+    }
+
+    /**
+     * 获取文章的分类和标签信息
+     * @param \Illuminate\Database\Eloquent\Model|\Illuminate\Contracts\Pagination\LengthAwarePaginator $collection
+     * @return mixed
+     */
+    public function getPostOtherInfo($collection)
+    {
         //懒惰渴求式加载
-        $posts->load([
+        $collection->load([
             'category' => function ($query) {
                 $query->where('status', 0);
             },
@@ -48,19 +57,7 @@ class PostRepository extends IRepository
                 $query->where('status', 0);
             },
         ]);
-        return $posts;
-    }
-
-    /**
-     * 根据字段查找一篇文章
-     * @param $field
-     * @param $value
-     * @param array $columns
-     * @return \Illuminate\Database\Eloquent\Model|static
-     */
-    public function findOneByField($field, $value, $columns = ['*'])
-    {
-        return $this->model->where($field, '=', $value)->firstOrFail($columns);
+        return $collection;
     }
 
 }
